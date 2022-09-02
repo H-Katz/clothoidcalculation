@@ -46,7 +46,7 @@ $$
 
 この時、点$P$の軸 $L$ についての垂線は、線分 $AB$ 上で交わるとは限らない。交点が存在する条件は　$ 0 \le l \lt L = |\vec{AB}|$ である。
 
-最終的には、線分$AB$に対する割り出しは次の式となる。
+以上により、線分$AB$に対する割り出しは次の通りである。
 
 $$
 \begin{pmatrix}
@@ -92,7 +92,7 @@ R  + |\vec{CP}|  & \text{if} & R < 0
 \end{cases}
 $$
 
-まとめると、単曲線の場合の割り出し計算式は次の通りである。
+以上により、単曲線の場合の割り出し計算式は次の通りである。
 
 $$
 \begin{array}{cll}
@@ -251,14 +251,14 @@ $$
 ベクトル$\vec{AP} = (x-x_0, y-y_0)$ が、軸$L$上に射影されたベクトルを$\vec{AQ}$、軸$W$上に射影されたベクトルを$\vec{QP}$とする。軸$L$の方向ベクトルは$\vec{e_L}=(\cos\tau, \sin\tau)$、軸$W$の方向ベクトルは$\vec{e_W}=(-\sin\tau, \cos\tau)$である。これらは方向ベクトルなので、大きさは 1 である。$|\vec{e_L}|=|\vec{e_W}|=1$。したがって、
 
 $$
-\vec{AQ} = l\vec{e_L}=\dfrac{\vec{AP}\cdot\vec{e_L}}{|\vec{e_L}|^2} \vec{e_L}
+\vec{AQ} = \dfrac{\vec{AP}\cdot\vec{e_L}}{|\vec{e_L}|^2} \vec{e_L} = l\vec{e_L}
 \\
 \\
-\therefore l = \vec{AP}\cdot\vec{e_L} = (x-x_0)\cos\tau + (y - y_0)\sin\tau \\
-\vec{QP} = w\vec{e_W}=\dfrac{\vec{AP}\cdot\vec{e_W}}{|\vec{e_W}|^2} \vec{e_W}
+\therefore l = \frac{\vec{AP}\cdot\vec{e_L}}{1^2} = (x-x_0)\cos\tau + (y - y_0)\sin\tau \\
+\vec{QP} = \dfrac{\vec{AP}\cdot\vec{e_W}}{|\vec{e_W}|^2} \vec{e_W} = w\vec{e_W}
 \\
 \\
-\therefore w = \vec{AP}\cdot\vec{e_W} = -(x-x_0)\sin\tau + (y - y_0)\cos\tau
+\therefore w = \frac{\vec{AP}\cdot\vec{e_W}}{1^2} = -(x-x_0)\sin\tau + (y - y_0)\cos\tau
 $$
 
 -   **証明**
@@ -269,18 +269,71 @@ $$
 \begin{array}{cl}
  & \vec{AQ}\cdot\vec{QP} = \vec{AQ}\cdot(\vec{AP}-\vec{AQ})= 0
  \\
- \implies & \vec{AQ}\cdot \vec{AP} = \vec{AQ}\cdot \vec{AQ} \\
- \implies & l \vec{e_L} \cdot \vec{AP} = l \vec{e_L} \cdot l \vec{e_L} = l^2|\vec{e_L}|^2\\
- \implies & \vec{e_L} \cdot \vec{AP} = l |\vec{e_L}|^2\\
+ \implies & l \vec{e_L} \cdot \vec{AP} - l \vec{e_L} \cdot l \vec{e_L} = 0\\
+ \implies & l (\vec{e_L} \cdot \vec{AP} - l |\vec{e_L}|^2 ) = 0\\
  & \therefore l = \dfrac{\vec{AP}\cdot \vec{e_L}}{|\vec{e_L}|^2}
 \end{array}
 $$
 
 軸$W$でも同様の計算で、$ w = \dfrac{\vec{AP}\cdot{\vec{e_W}}}{|\vec{e_W}|^2} $となる。
 
-### $sign$関数
+### 余弦定理
 
-$sign(x)$は、次の性質を持つ。
+<img src="figure/segment.png" width="300"></img>
+この図において、三角形$PAB$の角度を$\theta$とすると、余弦定理から、$|\vec{PB}|^2 = |\vec{AP}|^2 + |\vec{AB}|^2 -2 |\vec{AP}||\vec{AB}|\cos\theta$ が成り立つ。|$\vec{AP}|\cos\theta = l$であることに注意すると、次の式が成り立つ。
+
+$$
+\begin{cases}
+  \vec{PB} = (|\vec{AB}|\cos\tau + x_0 - x, |\vec{AB}|\sin\tau + x_0 - x) \\
+  \vec{AP} = (x - x_0, y - y_0) \\
+  l = |\vec{AP}| \cos\theta
+\end{cases}
+$$
+
+これらを余弦定理の式に代入する。
+
+$$
+\begin{array}{ll}
+(左辺) & = (|\vec{AB}|\cos\tau -(x - x_0))^2 + (|\vec{AB}|\sin\tau - (y - y_0))^2 \\
+ & = \cancel{|\vec{AB}|^2} -2|\vec{AB}|((x-x_0)\cos\tau + (y-y_0)\sin\tau)  + \cancel{(x-x_0)^2} +  \cancel{(y-y_0)^2} \\
+ \\
+ (右辺) & = |\vec{AP}|^2 + |\vec{AB}|^2 -2 |\vec{AP}||\vec{AB}|\cos\theta \\
+   & = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AB}|^2} -2|\vec{AB}|\cdot l \\
+\\
+\implies & 2|\vec{AB}|\cdot l = 2|\vec{AB}|((x-x_0)\cos\tau + (y-y_0)\sin\tau) \\
+\end{array}
+$$
+
+したがって、$l = (x-x_0)\cos\tau + (y-y_0)\sin\tau$が成り立つ。
+
+同様に、$W$軸上の点$Q_W$を考え、三角形$PAQ_W$での余弦定理を考える。$|\vec{PQ_W}|^2 = |\vec{AP}|^2 + |\vec{AQ_W}|^2 -2 |\vec{AP}||\vec{AQ_W}|\cos\theta_w$ である。
+
+$$
+\begin{array}{ll}
+(左辺) & = (|\vec{AQ_W}|\cos(\tau+\pi/2) -(x - x_0))^2 + (|\vec{AQ_W}|\sin(\tau+\pi/2) - (y - y_0))^2 \\
+ & = \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|(-(x-x_0)\sin\tau + (y-y_0)\cos\tau)  + \cancel{(x-x_0)^2} +  \cancel{(y-y_0)^2} \\
+ \\
+ (右辺) & = |\vec{AP}|^2 + |\vec{AQ_W}|^2 -2 |\vec{AP}||\vec{AQ_W}|\cos\theta_w \\
+   & = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|\cdot w \\
+\\
+\implies & 2|\vec{AQ_W}|\cdot w = 2|\vec{AQ_W}|(-(x-x_0)\sin\tau + (y-y_0)\cos\tau)
+\end{array}
+$$
+
+したがって、他の場合ど同様に、$ w= -(x-x_0)\sin\tau + (y-y_0)\cos\tau$が成り立つ。
+
+$$
+\therefore \begin{pmatrix}
+l \\
+w
+\end{pmatrix}
+= \begin{pmatrix}
+(x - x_0)\cos\tau+(y - y_0)\sin\tau \\
+-(x - x_0)\sin\tau +(y - y_0)\cos\tau
+\end{pmatrix}
+$$
+
+### $sign$関数
 
 $$
 sign(x) = \begin{cases}
@@ -318,6 +371,3 @@ $$
 路線は 3 種類の線形要素の組み合わせである。そこで、任意の点$P(x,y)$が、路線中のどの線形要素上に対応するのか、探索する必要がある。素朴な線形探索では、路線の終端に近い領域ほど計時時間を必要とする実装になる。
 
 一つのアイデアとして、各線形の始点と求めたい点$P$との距離を計算しておき、最短距離となる始点を求める。始点は前後二つの線形の端点なので、その二つの線形に限って割り出し計算すると効率が良いはずである。この場合の計算量は $O(n)$である。これより速くするなら**最近傍探索**用のデータ構造を導入する必要がある。
-
-$$
-$$
