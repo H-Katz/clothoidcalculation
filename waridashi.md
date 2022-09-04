@@ -112,6 +112,249 @@ $$
 
 ## クロソイド曲線での割り出し
 
+これまで同様に曲線長$L$であるクロソイド曲線に対して、平面直角座標系上の点 $P(x, y)$から路線座標系上の点 $P(l, w)$への変換を考える。具体的にクロソイド曲線は、始点 $KA(x_KA,y_KA)$で接線方向角$\theta$、終端 $KE$ での半径 $R$、クロソイドパラメータは $A$ とする。ここで、求める点 $P$ のクロソイド曲線に対する垂線との交点 $K$ を求めるために、$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ を設定する。これらを説明する図を次に示す。なお、反時計回りの場合は、$R>0, \theta>0$ であり、時計回りの場合は、$　R<0, \theta < 0$である。
+
+### $KA-KE$クロソイド$(R > 0)$
+
+まず、原座標系を下左図で、変換後の小座標系を下右図に示す。下右図は、$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ とする座標系である。
+
+<img src="figure/crothoid0.png" width="800"></img>
+
+この小座標系への変換は次の通りである。
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+R^{-1}(\theta) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\theta & \sin\theta \\
+-\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+$$
+
+以降は全てこの小座標系で議論する。
+
+求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。この座標系で求める点 $P(l_0, w_0)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_0 \\
+w_0
+\end{pmatrix} =
+R^{-1}(\phi_0) \begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_0 & \sin\phi_0 \\
+-\sin\phi_0 & \cos\phi_0
+\end{pmatrix}
+\begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix}
+$$
+
+次に、この $l_0$ をクロソイド長とする点$K_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2R}$、$u_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_1 \\
+w_1
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_1 & \sin\phi_1 \\
+-\sin\phi_1 & \cos\phi_1
+\end{pmatrix}
+\begin{pmatrix}
+u - u_1 \\
+v - v_1
+\end{pmatrix}
+$$
+
+次に$l_0 + l_1$をクロソイド長とする点$K_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2R}$、$u_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。
+
+これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l < L$ でなければならない。
+
+$$
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} =
+\begin{pmatrix}
+l_0 + l_1 + \cdots + l_k \\
+w_k
+\end{pmatrix}　(0 \le l < L)
+$$
+
+### $KA-KE$クロソイド$(R < 0)$
+
+まず、原座標系を下左図で、変換後の小座標系を下右図に示す。下右図は、$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ とする座標系である。
+
+<img src="figure/crothoid1.png" width="800"></img>
+
+この小座標系への変換は次の通りである。
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+R^{-1}(\theta) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+\begin{pmatrix}
+\cos\theta & \sin\theta \\
+-\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+\\
+\\
+\therefore\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
+(x - x_{KA})\sin\theta -(y - y_{KA})\cos\theta
+\end{pmatrix}
+$$
+
+以降は全てこの小座標系で議論する。
+
+求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。
+
+前節と同様に、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l < L$ でなければならない。
+
+$$
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} =
+\begin{pmatrix}
+l_0 + l_1 + \cdots + l_k \\
+w_k
+\end{pmatrix}　(0 \le l < L)
+$$
+
+### $KE-KA$クロソイド
+
+前節までの議論と同様に、$KE-KA$クロソイドの$R>0$の場合、
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 0 \\
+0 & 0
+\end{pmatrix}
+R^{-1}(\theta) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 0 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\cos\theta & \sin\theta \\
+-\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+\\
+\\
+\therefore\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-(x - x_{KA})\cos(\theta+\tau) -(y - y_{KA})\sin(\theta+\tau) \\
+-(x - x_{KA})\sin(\theta+\tau) +(y - y_{KA})\cos(\theta+\tau)
+\end{pmatrix}
+$$
+
+$R<0$の場合、
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 0 \\
+0 & 0
+\end{pmatrix}
+R^{-1}(\theta) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+-1 & 0 \\
+0 & -1
+\end{pmatrix}
+\begin{pmatrix}
+\cos\theta & \sin\theta \\
+-\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+\\
+\\
+\therefore\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-(x - x_{KA})\cos(\theta+\tau) -(y - y_{KA})\sin(\theta+\tau) \\
+(x - x_{KA})\sin(\theta+\tau) -(y - y_{KA})\cos(\theta+\tau)
+\end{pmatrix}
+$$
+
+どちらの場合も、
+
+$$
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　(0 \le l < L)
+$$
+
+となる。
+
+### 卵形クロソイド
+
 略。
 
 ## 補足
@@ -130,7 +373,7 @@ R(\theta) =
 \\
 R^{-1}(\tau) =
 \begin{pmatrix}
-\cos\tau & \sin\tau\\
+\cos\tau & \sin\tau \\
 -\sin\tau & \cos\tau
 \end{pmatrix}
 \\
