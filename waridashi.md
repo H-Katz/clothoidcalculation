@@ -473,7 +473,7 @@ y_{KAE}
 \end{array}
 $$
 
-どちらの場合も、
+どちらの場合も次の式を使う。
 
 $$
 \begin{array}{cl}
@@ -521,7 +521,7 @@ v
 \end{pmatrix}
 $$
 
-どちらの場合も、
+どちらの場合も次の式を使う。
 
 $$
 \begin{array}{cl}
@@ -538,8 +538,6 @@ w_k
 l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{A^2}{2R_2^2}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
-
-となる。どちらも次の値を使う。
 
 ## 補足
 
