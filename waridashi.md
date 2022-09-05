@@ -183,9 +183,10 @@ $$
 
 次に$l_0 + l_1$をクロソイド長とする点$K_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2R}$、$u_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。
 
-これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l < L$ でなければならない。
+これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
 
 $$
+\begin{array}{cc}
 \begin{pmatrix}
 l \\
 w
@@ -193,7 +194,8 @@ w
 \begin{pmatrix}
 l_0 + l_1 + \cdots + l_k \\
 w_k
-\end{pmatrix}　(0 \le l < L)
+\end{pmatrix}　& (0 \le l < L)
+\end{array}
 $$
 
 ### $KA-KE$クロソイド$(R < 0)$
@@ -248,6 +250,7 @@ $$
 前節と同様に、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l < L$ でなければならない。
 
 $$
+\begin{array}{cc}
 \begin{pmatrix}
 l \\
 w
@@ -255,7 +258,8 @@ w
 \begin{pmatrix}
 l_0 + l_1 + \cdots + l_k \\
 w_k
-\end{pmatrix}　(0 \le l < L)
+\end{pmatrix}　& (0 \le l < L)
+\end{array}
 $$
 
 ### $KE-KA$クロソイド
@@ -356,16 +360,16 @@ $$
 
 クロソイドパラメータを $A$ とする卵形クロソイドは、基本クロソイド の$KA-KE$ の間に始点 $KAE$ を持ち、終端 $KE$ は終点$KEE$ と一致する。今、この点 $KAE$ での半径を $R_1$、終点 $KEE$ での半径を $R_2$ として($R_1 > R_2$)、 点 $KA$ を求める。この点 $KAE$ または点 $KEE$ を所与の点として点 $KA$ が分かれば、前節までの基本クロソイドの式を全て再利用して割り出し計算を実施できる。ただし、交点 $K$ の存在する条件は、$l' \le l < l' + L $ である。ここで$l'$は点$KA-KAE$のクロソイド曲線長($= \dfrac{A^2}{|R_1|}$)である。
 
-$R_1>R_2>0$ である卵形クロソイドの点$KAE(x_{KAE},y_{KAE})$での接線方向角を$\theta$、卵形クロソイドを包含する基本クロソイドとしての接線方向角$\tau_{KAE}$とする。この角度$\tau_{KAE}$での基本クロソイドとしての座標を$(x_{\tau_{KAE}}, y_{\tau_{KAE}})$とする。すると、原座標での点$KA(x_{KA},y_{KA})$は次の方程式を満たす。
+$R_1>R_2>0$ である卵形クロソイドの点$KAE(x_{KAE},y_{KAE})$での接線方向角を$\theta$、卵形クロソイドを包含する基本クロソイドとしての接線方向角$\tau$とする。この角度$\tau$での基本クロソイドとしての座標を$(x_\tau, y_\tau)$とする。すると、原座標での点$KA(x_{KA},y_{KA})$は次の方程式を満たす。
 
 $$
-R(-\theta+\tau_{KAE})\begin{pmatrix}
+R(-\theta+\tau)\begin{pmatrix}
 x_{KA} - x_{KAE} \\
 y_{KA} - y_{KAE}
 \end{pmatrix} +
 \begin{pmatrix}
-x_{\tau_{KAE}} \\
-y_{\tau_{KAE}}
+x_\tau \\
+y_\tau
 \end{pmatrix} =
 \begin{pmatrix}
 0 \\
@@ -380,15 +384,15 @@ $$
 x_{KA}\\
 y_{KA}
 \end{pmatrix} =
-R^{-1}(-\theta+\tau_{KAE})\begin{pmatrix}
-0 - x_{\tau_{KAE}} \\
-0 - y_{\tau_{KAE}}
+R^{-1}(-\theta+\tau)\begin{pmatrix}
+0 - x_{\tau} \\
+0 - y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
 y_{KAE}
 \end{pmatrix} =
-R(\theta-\tau_{KAE})\begin{pmatrix} - x_{\tau_{KAE}} \\ - y_{\tau_{KAE}}
+R(\theta-\tau)\begin{pmatrix} - x_{\tau} \\ - y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
@@ -403,7 +407,7 @@ $$
 x_{KA}\\
 y_{KA}
 \end{pmatrix} =
-R(\theta+\tau_{KAE})\begin{pmatrix} - x_{\tau_{KAE}} \\  y_{\tau_{KAE}}
+R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\  y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
@@ -414,10 +418,10 @@ $$
 となる。どちらも次の値を使う。
 
 $$
-\tau_{KAE} = \dfrac{A^2}{2R_1^2}, x_{\tau_{KAE}} = \dfrac{A}{\sqrt2}\int^{\tau_{KAE}}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, y_{\tau_{KAE}} = \dfrac{A}{\sqrt2}\int^{\tau_{KAE}}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
+\tau = \dfrac{A^2}{2R_1^2}, x_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, y_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
 $$
 
-まとめると、KAE-KEE 卵形クロソイドは、R_1 > R_2 > 0 の時、
+まとめると、$KAE-KEE$ 卵形クロソイドは、$R_1 > R_2 > 0$ の時、
 
 $$
 \begin{array}{cl}
