@@ -269,23 +269,22 @@ v
 \end{pmatrix} =
 \begin{pmatrix}
 -1 & 0 \\
-0 & 0
+0 & 1
 \end{pmatrix}
-R^{-1}(\theta) \begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} =
+\begin{pmatrix}
+R^{-1}(\theta+\tau) \begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} +
+\begin{pmatrix} - x_\tau \\ y_\tau
+\end{pmatrix} \end{pmatrix}  \\ =
 \begin{pmatrix}
 -1 & 0 \\
 0 & 1
 \end{pmatrix}
 \begin{pmatrix}
-\cos\theta & \sin\theta \\
--\sin\theta & \cos\theta
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
+(x - x_{KE})\cos(\theta+\tau) + (y - y_{KE})\sin(\theta+\tau) -x_\tau\\
+-(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) +y_\tau
 \end{pmatrix}
 \\
 \\
@@ -294,8 +293,8 @@ u \\
 v
 \end{pmatrix} =
 \begin{pmatrix}
--(x - x_{KA})\cos(\theta+\tau) -(y - y_{KA})\sin(\theta+\tau) \\
--(x - x_{KA})\sin(\theta+\tau) +(y - y_{KA})\cos(\theta+\tau)
+-(x - x_{KE})\cos(\theta+\tau) -(y - y_{KE})\sin(\theta+\tau) + x_\tau\\
+-(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) + y_\tau
 \end{pmatrix}
 $$
 
@@ -308,23 +307,18 @@ v
 \end{pmatrix} =
 \begin{pmatrix}
 -1 & 0 \\
-0 & 0
-\end{pmatrix}
-R^{-1}(\theta) \begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} =
-\begin{pmatrix}
--1 & 0 \\
 0 & -1
 \end{pmatrix}
 \begin{pmatrix}
-\cos\theta & \sin\theta \\
--\sin\theta & \cos\theta
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
+R^{-1}(\theta-\tau) \begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} +
+\begin{pmatrix} - x_\tau \\ - y_\tau
+\end{pmatrix} \end{pmatrix}  \\ =
+-\begin{pmatrix}
+(x - x_{KE})\cos(\theta+\tau) + (y - y_{KE})\sin(\theta+\tau) -x_\tau\\
+-(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) -y_\tau
 \end{pmatrix}
 \\
 \\
@@ -333,14 +327,15 @@ u \\
 v
 \end{pmatrix} =
 \begin{pmatrix}
--(x - x_{KA})\cos(\theta+\tau) -(y - y_{KA})\sin(\theta+\tau) \\
-(x - x_{KA})\sin(\theta+\tau) -(y - y_{KA})\cos(\theta+\tau)
+-(x - x_{KE})\cos(\theta-\tau) -(y - y_{KE})\sin(\theta-\tau) + x_\tau\\
+(x - x_{KE})\sin(\theta-\tau) -(y - y_{KE})\cos(\theta-\tau) + y_\tau
 \end{pmatrix}
 $$
 
 どちらの場合も、
 
 $$
+\begin{array}{cl}
 \begin{pmatrix}
 l \\
 w
@@ -349,13 +344,198 @@ w
 L - (l_0 + l_1 + \cdots + l_k) \\
 w_k
 \end{pmatrix}　(0 \le l < L)
+\\
+\\
+\tau = \dfrac{A^2}{2R^2}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
 $$
 
 となる。
 
-### 卵形クロソイド
+### 卵形クロソイド$(KAE-KEE)$
 
-略。
+クロソイドパラメータを $A$ とする卵形クロソイドは、基本クロソイド の$KA-KE$ の間に始点 $KAE$ を持ち、終端 $KE$ は終点$KEE$ と一致する。今、この点 $KAE$ での半径を $R_1$、終点 $KEE$ での半径を $R_2$ として($R_1 > R_2$)、 点 $KA$ を求める。この点 $KAE$ または点 $KEE$ を所与の点として点 $KA$ が分かれば、前節までの基本クロソイドの式を全て再利用して割り出し計算を実施できる。ただし、交点 $K$ の存在する条件は、$l' \le l < l' + L $ である。ここで$l'$は点$KA-KAE$のクロソイド曲線長($= \dfrac{A^2}{|R_1|}$)である。
+
+$R_1>R_2>0$ である卵形クロソイドの点$KAE(x_{KAE},y_{KAE})$での接線方向角を$\theta$、卵形クロソイドを包含する基本クロソイドとしての接線方向角$\tau_{KAE}$とする。この角度$\tau_{KAE}$での基本クロソイドとしての座標を$(x_{\tau_{KAE}}, y_{\tau_{KAE}})$とする。すると、原座標での点$KA(x_{KA},y_{KA})$は次の方程式を満たす。
+
+$$
+R(-\theta+\tau_{KAE})\begin{pmatrix}
+x_{KA} - x_{KAE} \\
+y_{KA} - y_{KAE}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{\tau_{KAE}} \\
+y_{\tau_{KAE}}
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+0
+\end{pmatrix}
+$$
+
+これを点$KA(x_{KA},y_{KA})$について解くと、
+
+$$
+\begin{pmatrix}
+x_{KA}\\
+y_{KA}
+\end{pmatrix} =
+R^{-1}(-\theta+\tau_{KAE})\begin{pmatrix}
+0 - x_{\tau_{KAE}} \\
+0 - y_{\tau_{KAE}}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KAE} \\
+y_{KAE}
+\end{pmatrix} =
+R(\theta-\tau_{KAE})\begin{pmatrix} - x_{\tau_{KAE}} \\ - y_{\tau_{KAE}}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KAE} \\
+y_{KAE}
+\end{pmatrix}
+$$
+
+同様に、$R_2 < R_1 < 0$ の時、
+
+$$
+\begin{pmatrix}
+x_{KA}\\
+y_{KA}
+\end{pmatrix} =
+R(\theta+\tau_{KAE})\begin{pmatrix} - x_{\tau_{KAE}} \\  y_{\tau_{KAE}}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KAE} \\
+y_{KAE}
+\end{pmatrix} \\
+$$
+
+となる。どちらも次の値を使う。
+
+$$
+\tau_{KAE} = \dfrac{A^2}{2R_1^2}, x_{\tau_{KAE}} = \dfrac{A}{\sqrt2}\int^{\tau_{KAE}}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, y_{\tau_{KAE}} = \dfrac{A}{\sqrt2}\int^{\tau_{KAE}}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
+$$
+
+まとめると、KAE-KEE 卵形クロソイドは、R_1 > R_2 > 0 の時、
+
+$$
+\begin{array}{cl}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
+-(x - x_{KA})\sin\theta +(y - y_{KA})\cos\theta
+\end{pmatrix}
+\\\\
+\begin{pmatrix}
+x_{KA}\\
+y_{KA}
+\end{pmatrix} & =
+R(\theta-\tau)\begin{pmatrix} - x_{\tau} \\ - y_{\tau}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KAE} \\
+y_{KAE}
+\end{pmatrix}
+\end{array}
+$$
+
+$R_2 < R_1 < 0$ の時、
+
+$$
+\begin{array}{cl}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix}  & =
+\begin{pmatrix}
+(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
+(x - x_{KA})\sin\theta -(y - y_{KA})\cos\theta
+\end{pmatrix}
+\\\\
+\begin{pmatrix}
+x_{KA}\\
+y_{KA}
+\end{pmatrix} & =
+R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\  y_{\tau}
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KAE} \\
+y_{KAE}
+\end{pmatrix}
+\end{array}
+$$
+
+どちらの場合も、
+
+$$
+\begin{array}{cl}
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} =
+\begin{pmatrix}
+l' + l_0 + l_1 + \cdots + l_k \\
+w_k
+\end{pmatrix}　(l' \le l < l' + L)
+\\
+\\
+l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l'}{2|R_1|}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+### 卵形クロソイド$(KEE-KAE)$
+
+$KE-KA$クロソイドの場合を原則そのまま利用できる。
+
+$R_1 > R_2 > 0 $の時、点$KE=KEE$であるから、
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-(x - x_{KEE})\cos(\theta+\tau) -(y - y_{KEE})\sin(\theta+\tau) + x_\tau\\
+-(x - x_{KEE})\sin(\theta+\tau) +(y - y_{KEE})\cos(\theta+\tau) + y_\tau
+\end{pmatrix}
+$$
+
+同様に、$R_2 < R_1 < 0 $の時、点$KE=KEE$であるから、
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+\begin{pmatrix}
+-(x - x_{KEE})\cos(\theta-\tau) -(y - y_{KEE})\sin(\theta-\tau) + x_\tau\\
+(x - x_{KEE})\sin(\theta-\tau) -(y - y_{KEE})\cos(\theta-\tau) + y_\tau
+\end{pmatrix}
+$$
+
+どちらの場合も、
+
+$$
+\begin{array}{cl}
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} =
+\begin{pmatrix}
+l' + L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　(l' \le l < l' + L)
+\\
+\\
+l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{A^2}{2R_2^2}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+となる。どちらも次の値を使う。
 
 ## 補足
 
