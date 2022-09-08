@@ -112,7 +112,7 @@ $$
 
 ## クロソイド曲線での割り出し
 
-これまで同様に曲線長$L$であるクロソイド曲線に対して、平面直角座標系上の点 $P(x, y)$から路線座標系上の点 $P(l, w)$への変換を考える。具体的にクロソイド曲線は、始点 $KA(x_KA,y_KA)$で接線方向角$\theta$、終端 $KE$ での半径 $R$、クロソイドパラメータは $A$ とする。ここで、求める点 $P$ のクロソイド曲線に対する垂線との交点 $K$ を求めるために、$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ を設定する。これらを説明する図を次に示す。なお、反時計回りの場合は、$R>0, \theta>0$ であり、時計回りの場合は、$　R<0, \theta < 0$である。
+これまで同様に曲線長$L$であるクロソイド曲線に対して、平面直角座標系上の点 $P(x, y)$から路線座標系上の点 $P(l, w)$への変換を考える。具体的にクロソイド曲線は、始点 $KA(x_{KA},y_{KA})$で接線方向角$\theta$、終端 $KE$ での半径 $R$、クロソイドパラメータは $A$ とする。ここで、求める点 $P$ のクロソイド曲線に対する垂線との交点 $K$ を求めるために、$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ を設定する。これらを説明する図を次に示す。なお、反時計回りの場合は、$R>0, \theta>0$ であり、時計回りの場合は、$　R<0, \theta < 0$である。
 
 ### $KA-KE$クロソイド$(R > 0)$
 
@@ -186,15 +186,32 @@ $$
 これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
 
 $$
-\begin{array}{cc}
+\begin{array}{cll}
 \begin{pmatrix}
 l \\
 w
-\end{pmatrix} =
+\end{pmatrix}  & =
 \begin{pmatrix}
 l_0 + l_1 + \cdots + l_k \\
 w_k
-\end{pmatrix}　& (0 \le l < L)
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -204,25 +221,17 @@ $$
 
 <img src="figure/crothoid1.png" width="800"></img>
 
-この小座標系への変換は次の通りである。
+この小座標系への変換は次の通りである。これは、$R>0$の場合と同じである。
 
 $$
 \begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
-\begin{pmatrix}
-1 & 0 \\
-0 & -1
-\end{pmatrix}
 R^{-1}(\theta) \begin{pmatrix}
 x - x_{KA} \\
 y - y_{KA}
 \end{pmatrix} =
-\begin{pmatrix}
-1 & 0 \\
-0 & -1
-\end{pmatrix}
 \begin{pmatrix}
 \cos\theta & \sin\theta \\
 -\sin\theta & \cos\theta
@@ -239,122 +248,711 @@ v
 \end{pmatrix} =
 \begin{pmatrix}
 (x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
-(x - x_{KA})\sin\theta -(y - y_{KA})\cos\theta
+-(x - x_{KA})\sin\theta +(y - y_{KA})\cos\theta
 \end{pmatrix}
 $$
 
 以降は全てこの小座標系で議論する。
 
-求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。
-
-前節と同様に、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l < L$ でなければならない。
+求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。この座標系で求める点 $P(l_0, w_0)$は次の通りになる。
 
 $$
-\begin{array}{cc}
+\begin{pmatrix}
+l_0 \\
+w_0
+\end{pmatrix} =
+R^{-1}(\phi_0) \begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_0 & \sin\phi_0 \\
+-\sin\phi_0 & \cos\phi_0
+\end{pmatrix}
+\begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix}
+$$
+
+次に、この $l_0$ をクロソイド長とする点$K_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2|R|}$、$u_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$\boxed{v_1 = -\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau}$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_1 \\
+w_1
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_1 & \sin\phi_1 \\
+-\sin\phi_1 & \cos\phi_1
+\end{pmatrix}
+\begin{pmatrix}
+u - u_1 \\
+v - v_1
+\end{pmatrix}
+$$
+
+次に$l_0 + l_1$をクロソイド長とする点$K_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2|R|}$、$u_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$\boxed{v_2 = -\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau}$ である。
+
+これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
+
+$$
+\begin{array}{cll}
 \begin{pmatrix}
 l \\
 w
-\end{pmatrix} =
+\end{pmatrix} & =
 \begin{pmatrix}
 l_0 + l_1 + \cdots + l_k \\
 w_k
-\end{pmatrix}　& (0 \le l < L)
+\end{pmatrix}　 \quad (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
-### $KE-KA$クロソイド
+### $KA-KE$クロソイド
 
-前節までの議論と同様に、$KE-KA$クロソイドの$R>0$の場合、
+以上、$KA-KE$ クロソイドの割り出し計算式は以下の通りまとめることができる。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
+-(x - x_{KA})\sin\theta +(y - y_{KA})\cos\theta
+\end{pmatrix}
+\\
+\\
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix} & =
+\begin{pmatrix}
+l_0 + l_1 + \cdots + l_k \\
+w_k
+\end{pmatrix}　 \quad (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+### $KE-KA$クロソイド$（R>0）$
+
+まず、原座標系を下左図で、変換後の小座標系を下右図に示す。下右図は、$KE$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ とする座標系である。
+
+この小座標系への変換は次の通りである。
 
 $$
 \begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
+R^{-1}(\theta+\tau + \pi) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
 \begin{pmatrix}
--1 & 0 \\
-0 & 1
+\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
+-\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
 \end{pmatrix}
 \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+$$
+
+ここで、点$KA$ は次の方程式を満たす。
+
+$$
+\begin{array}{c}
 R^{-1}(\theta+\tau) \begin{pmatrix}
-x - x_{KE} \\
-y - y_{KE}
+x_{KA} - x_{KE} \\
+y_{KA} - y_{KE}
+\end{pmatrix} =
+\begin{pmatrix}
+x_\tau \\
+-y_\tau
+\end{pmatrix}
+\\
+\\
+\therefore
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} =
+R(\theta+\tau) \begin{pmatrix}
+x_\tau \\
+-y_\tau
 \end{pmatrix} +
-\begin{pmatrix} - x_\tau \\ y_\tau
-\end{pmatrix} \end{pmatrix}  \\ =
 \begin{pmatrix}
--1 & 0 \\
-0 & 1
-\end{pmatrix}
+x_{KE} \\
+y_{KE}
+\end{pmatrix} =
 \begin{pmatrix}
-(x - x_{KE})\cos(\theta+\tau) + (y - y_{KE})\sin(\theta+\tau) -x_\tau\\
--(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) +y_\tau
+x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
+x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
 \end{pmatrix}
 \\
 \\
-\therefore\begin{pmatrix}
+\tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\end{array}
+$$
+
+以降はこの小座標系で議論する。この小座標系では、$KA-KE$クロソイドの$R<0$の形状と一致する。したがって、
+
+求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。この座標系で求める点 $P(l_0, w_0)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_0 \\
+w_0
+\end{pmatrix} =
+R^{-1}(\phi_0) \begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_0 & \sin\phi_0 \\
+-\sin\phi_0 & \cos\phi_0
+\end{pmatrix}
+\begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix}
+$$
+
+次に、この $l_0$ をクロソイド長とする点$K_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2R}$、$u_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_1 = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_1 \\
+w_1
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_1 & \sin\phi_1 \\
+-\sin\phi_1 & \cos\phi_1
+\end{pmatrix}
+\begin{pmatrix}
+u - u_1 \\
+v - v_1
+\end{pmatrix}
+$$
+
+次に$l_0 + l_1$をクロソイド長とする点$K_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2R}$、$u_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_2 = -\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。
+
+これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$ から累積曲線長$\sum^k_{n=0}l_n$ を引くことになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix}  & =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+ここで、$(u,v)$は、次の通りである。
+
+$$
+\begin{array}{c}
+\begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
 \begin{pmatrix}
--(x - x_{KE})\cos(\theta+\tau) -(y - y_{KE})\sin(\theta+\tau) + x_\tau\\
--(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) + y_\tau
+\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
+-\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
 \end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \\\\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
+x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+\tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\end{array}
 $$
 
-$R<0$の場合、
+### $KE-KA$クロソイド$（R<0）$
+
+まず、原座標系を下左図で、変換後の小座標系を下右図に示す。下右図は、点$KA$ を原点としクロソイド曲線の接線方向角を軸 $U$、軸 $U$ と直交する軸 $V$ とする座標系である。
+
+この小座標系への変換は次の通りである。
 
 $$
 \begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
+R^{-1}(\theta-\tau + \pi) \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} =
 \begin{pmatrix}
--1 & 0 \\
-0 & -1
+\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
+-\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
 \end{pmatrix}
 \begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+$$
+
+ここで、点$KA$ は次の方程式を満たす。
+
+$$
+\begin{array}{c}
 R^{-1}(\theta-\tau) \begin{pmatrix}
-x - x_{KE} \\
-y - y_{KE}
-\end{pmatrix} +
-\begin{pmatrix} - x_\tau \\ - y_\tau
-\end{pmatrix} \end{pmatrix}  \\ =
--\begin{pmatrix}
-(x - x_{KE})\cos(\theta+\tau) + (y - y_{KE})\sin(\theta+\tau) -x_\tau\\
--(x - x_{KE})\sin(\theta+\tau) +(y - y_{KE})\cos(\theta+\tau) -y_\tau
+x_{KA} - x_{KE} \\
+y_{KA} - y_{KE}
+\end{pmatrix} =
+\begin{pmatrix}
+x_\tau \\
+y_\tau
 \end{pmatrix}
 \\
 \\
-\therefore\begin{pmatrix}
+\therefore
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} =
+R(\theta+\tau) \begin{pmatrix}
+x_\tau \\
+y_\tau
+\end{pmatrix} +
+\begin{pmatrix}
+x_{KE} \\
+y_{KE}
+\end{pmatrix} =
+\begin{pmatrix}
+x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
+x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+\tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\end{array}
+$$
+
+以降はこの小座標系で議論する。この小座標系では、$KA-KE$クロソイドの$R>0$の形状と一致する。したがって、
+
+求める点 $P(l, w)$ に対するクロソイド上の点 $K$ が接線方向角$\phi$を持つ時、点 $K$を原点として接線方向を軸とする座標変換を考える。まず、クロソイド曲線の始点 $KA$ を $K_0(u_0, v_0)$とする。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。この座標系で求める点 $P(l_0, w_0)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_0 \\
+w_0
+\end{pmatrix} =
+R^{-1}(\phi_0) \begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_0 & \sin\phi_0 \\
+-\sin\phi_0 & \cos\phi_0
+\end{pmatrix}
+\begin{pmatrix}
+u - u_0 \\
+v - v_0
+\end{pmatrix}
+$$
+
+次に、この $l_0$ をクロソイド長とする点$K_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2|R|}$、$u_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_1 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_1}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
+
+$$
+\begin{pmatrix}
+l_1 \\
+w_1
+\end{pmatrix} =
+\begin{pmatrix}
+\cos\phi_1 & \sin\phi_1 \\
+-\sin\phi_1 & \cos\phi_1
+\end{pmatrix}
+\begin{pmatrix}
+u - u_1 \\
+v - v_1
+\end{pmatrix}
+$$
+
+次に$l_0 + l_1$をクロソイド長とする点$K_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2|R|}$、$u_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau$、$v_2 = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_2}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau$ である。
+
+これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点列$K_n$は求める点$K$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$ から累積曲線長$\sum^k_{n=0}l_n$ を引くことになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix}  & =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+ここで、$(u,v)$は、次の通りである。
+
+$$
+\begin{array}{c}
+\begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
 \begin{pmatrix}
--(x - x_{KE})\cos(\theta-\tau) -(y - y_{KE})\sin(\theta-\tau) + x_\tau\\
-(x - x_{KE})\sin(\theta-\tau) -(y - y_{KE})\cos(\theta-\tau) + y_\tau
+\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
+-\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
 \end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \\\\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} =
+\begin{pmatrix}
+x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
+x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+\tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\end{array}
 $$
 
-どちらの場合も、
+### $ KE-KA $クロソイド
+
+以上、$KE-KA$ クロソイドの割り出し計算式は以下の通りまとめることができる。$R>0 $ の時、次の通りである。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
+-\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \\\\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix}  & =
+\begin{pmatrix}
+x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
+x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+& \tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\\
+\\
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix}  & =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+$R<0 $ の時、次の通りである。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
+-\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \\\\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} & =
+\begin{pmatrix}
+x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
+x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+ & \tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\\
+\\
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix}  & =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+ & \phi_n  = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
+
+まず、$(u, v)$への変換について、$R < 0$ の時、$|R|$の絶対値を外すと、$\tau = - \dfrac{L}{2R}$であり、$(u, v)$への変換式は $R>0$の場合と同じである。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
+-\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix}
+\\
+\\
+& = \begin{pmatrix}
+\cos(\theta+\dfrac{L}{2R} + \pi) & \sin(\theta+\dfrac{L}{2R} + \pi) \\\\
+-\sin(\theta+\dfrac{L}{2R} + \pi) & \cos(\theta+\dfrac{L}{2R} + \pi)
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \quad (R < 0)
+\end{array}
+$$
+
+次に、点$KA$について、$R < 0$ の時、$|R|$の絶対値を外すと、同様に、点$KA$の座標は$y_\tau$の符号を除いて等しくなる。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} & =
+\begin{pmatrix}
+x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
+x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+\end{pmatrix}　\\ & =
+\begin{pmatrix}
+x_\tau\cos(\theta+\dfrac{L}{2R}) \boxed{- y_\tau} \sin(\theta+\dfrac{L}{2R}) + x_{KE}\\ \\
+x_\tau\sin(\theta+\dfrac{L}{2R}) \boxed{+ y_\tau} \cos(\theta+\dfrac{L}{2R}) + y_{KE}
+\end{pmatrix} \quad (R< 0 ) \\ \\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix} & =
+\begin{pmatrix}
+x_\tau\cos(\theta+\dfrac{L}{2R}) \boxed{+ y_\tau} \sin(\theta+\dfrac{L}{2R}) + x_{KE}\\ \\
+x_\tau\sin(\theta+\dfrac{L}{2R}) \boxed{- y_\tau} \cos(\theta+\dfrac{L}{2R}) + y_{KE}
+\end{pmatrix} \quad (R > 0 ) \\ \\
+\end{array}
+$$
+
+この違いを吸収するためには、$x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad
+y_\tau = - sign(R)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau$とすればよい。
+
+したがって、点$KA$について次の通りである。
 
 $$
 \begin{array}{cl}
 \begin{pmatrix}
-l \\
-w
-\end{pmatrix} =
+x_{KA} \\
+y_{KA}
+\end{pmatrix} & =
 \begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
-w_k
-\end{pmatrix}　(0 \le l < L)
-\\
-\\
-\tau = \dfrac{A^2}{2R^2}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+x_\tau\cos(\theta+\tau) \boxed{- y_\tau} \sin(\theta+\tau) + x_{KE}\\ \\
+x_\tau\sin(\theta+\tau) \boxed{+ y_\tau} \cos(\theta+\tau) + y_{KE}
+\end{pmatrix} \quad \\ \\
+& \tau = \dfrac{L}{2R}, \quad
+x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad
+y_\tau = - sign(R)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
 \end{array}
 $$
 
-となる。
+また、$\phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}$ としても、同じとなる。
+
+まとめると、$KE-KA$ クロソイドの場合は、次の通りとなる。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
+-\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
+\end{pmatrix}
+\begin{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} \\\\
+\begin{pmatrix}
+x_{KA} \\
+y_{KA}
+\end{pmatrix}  & =
+\begin{pmatrix}
+x_\tau\cos(\theta+\tau) - y_\tau \sin(\theta+\tau) + x_{KE}\\
+x_\tau\sin(\theta+\tau) + y_\tau \cos(\theta+\tau) + y_{KE}
+\end{pmatrix}
+\\
+\\
+& \tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = -sign(R)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\\
+\\
+\begin{pmatrix}
+l \\
+w
+\end{pmatrix}  & =
+\begin{pmatrix}
+L - (l_0 + l_1 + \cdots + l_k) \\
+w_k
+\end{pmatrix}　 (0 \le l < L)
+\\
+\\
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\end{array}
+$$
 
 ### 卵形クロソイド$(KAE-KEE)$
 
@@ -407,7 +1005,7 @@ $$
 x_{KA}\\
 y_{KA}
 \end{pmatrix} =
-R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\  y_{\tau}
+R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\ y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
@@ -454,7 +1052,7 @@ $$
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix}  & =
+\end{pmatrix} & =
 \begin{pmatrix}
 (x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
 (x - x_{KA})\sin\theta -(y - y_{KA})\cos\theta
@@ -464,7 +1062,7 @@ v
 x_{KA}\\
 y_{KA}
 \end{pmatrix} & =
-R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\  y_{\tau}
+R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\ y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
@@ -565,7 +1163,7 @@ $$
 逆回転行列には$R^{-1}(\tau)= R(-\tau)$という性質がある。$\theta$に$-\tau$を代入すると、逆回転行列となる。
 
 $$
-R(\theta)|_{\theta=-\tau} =
+R(\theta)|\_{\theta=-\tau} =
 R(-\tau) =
 \begin{pmatrix}
 \cos(-\tau) & -\sin(-\tau)\\
@@ -627,14 +1225,14 @@ $(x_0, y_0)$を移項して、逆回転行列を両辺にかける。
 
 $$
 \begin{array}{cl}
- (左辺) & = R^{-1}(\tau)R(\tau)\begin{pmatrix}
+(左辺) & = R^{-1}(\tau)R(\tau)\begin{pmatrix}
 u \\
 v
 \end{pmatrix} =
 \begin{pmatrix}
- 1 & 0 \\
- 0 & 1
- \end{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
 \begin{pmatrix}
 u \\
 v
@@ -644,7 +1242,7 @@ u \\
 v
 \end{pmatrix}
 \\\\
- (右辺) & = R^{-1}(\tau)
+(右辺) & = R^{-1}(\tau)
 \begin{pmatrix}
 x - x_0\\
 y - y_0
@@ -692,11 +1290,11 @@ $$
 
 $$
 \begin{array}{cl}
- & \vec{AQ}\cdot\vec{QP} = \vec{AQ}\cdot(\vec{AP}-\vec{AQ})= 0
- \\
- \implies & l \vec{e_L} \cdot \vec{AP} - l \vec{e_L} \cdot l \vec{e_L} = 0\\
- \implies & l (\vec{e_L} \cdot \vec{AP} - l |\vec{e_L}|^2 ) = 0\\
- & \therefore l = \dfrac{\vec{AP}\cdot \vec{e_L}}{|\vec{e_L}|^2}
+& \vec{AQ}\cdot\vec{QP} = \vec{AQ}\cdot(\vec{AP}-\vec{AQ})= 0
+\\
+\implies & l \vec{e_L} \cdot \vec{AP} - l \vec{e_L} \cdot l \vec{e_L} = 0\\
+\implies & l (\vec{e_L} \cdot \vec{AP} - l |\vec{e_L}|^2 ) = 0\\
+& \therefore l = \dfrac{\vec{AP}\cdot \vec{e_L}}{|\vec{e_L}|^2}
 \end{array}
 $$
 
@@ -709,9 +1307,9 @@ $$
 
 $$
 \begin{cases}
-  \vec{PB} = (|\vec{AB}|\cos\tau + x_0 - x, |\vec{AB}|\sin\tau + x_0 - x) \\
-  \vec{AP} = (x - x_0, y - y_0) \\
-  l = |\vec{AP}| \cos\theta
+\vec{PB} = (|\vec{AB}|\cos\tau + x_0 - x, |\vec{AB}|\sin\tau + x_0 - x) \\
+\vec{AP} = (x - x_0, y - y_0) \\
+l = |\vec{AP}| \cos\theta
 \end{cases}
 $$
 
@@ -720,10 +1318,10 @@ $$
 $$
 \begin{array}{ll}
 (左辺) & = (|\vec{AB}|\cos\tau -(x - x_0))^2 + (|\vec{AB}|\sin\tau - (y - y_0))^2 \\
- & = \cancel{|\vec{AB}|^2} -2|\vec{AB}|((x-x_0)\cos\tau + (y-y_0)\sin\tau)  + \cancel{(x-x_0)^2} +  \cancel{(y-y_0)^2} \\
- \\
- (右辺) & = |\vec{AP}|^2 + |\vec{AB}|^2 -2 |\vec{AP}||\vec{AB}|\cos\theta \\
-   & = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AB}|^2} -2|\vec{AB}|\cdot l \\
+& = \cancel{|\vec{AB}|^2} -2|\vec{AB}|((x-x_0)\cos\tau + (y-y_0)\sin\tau) + \cancel{(x-x_0)^2} + \cancel{(y-y_0)^2} \\
+\\
+(右辺) & = |\vec{AP}|^2 + |\vec{AB}|^2 -2 |\vec{AP}||\vec{AB}|\cos\theta \\
+& = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AB}|^2} -2|\vec{AB}|\cdot l \\
 \\
 \implies & 2|\vec{AB}|\cdot l = 2|\vec{AB}|((x-x_0)\cos\tau + (y-y_0)\sin\tau) \\
 \end{array}
@@ -736,10 +1334,10 @@ $$
 $$
 \begin{array}{ll}
 (左辺) & = (|\vec{AQ_W}|\cos(\tau+\pi/2) -(x - x_0))^2 + (|\vec{AQ_W}|\sin(\tau+\pi/2) - (y - y_0))^2 \\
- & = \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|(-(x-x_0)\sin\tau + (y-y_0)\cos\tau)  + \cancel{(x-x_0)^2} +  \cancel{(y-y_0)^2} \\
- \\
- (右辺) & = |\vec{AP}|^2 + |\vec{AQ_W}|^2 -2 |\vec{AP}||\vec{AQ_W}|\cos\theta_w \\
-   & = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|\cdot w \\
+& = \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|(-(x-x_0)\sin\tau + (y-y_0)\cos\tau) + \cancel{(x-x_0)^2} + \cancel{(y-y_0)^2} \\
+\\
+(右辺) & = |\vec{AP}|^2 + |\vec{AQ_W}|^2 -2 |\vec{AP}||\vec{AQ_W}|\cos\theta_w \\
+& = \cancel{(x-x_0)^2} + \cancel{(y - y_0)^2} + \cancel{|\vec{AQ_W}|^2} -2|\vec{AQ_W}|\cdot w \\
 \\
 \implies & 2|\vec{AQ_W}|\cdot w = 2|\vec{AQ_W}|(-(x-x_0)\sin\tau + (y-y_0)\cos\tau)
 \end{array}
@@ -773,13 +1371,13 @@ $$
 任意の 2 点$CA$を与えられた時の符号付き角度$\theta_{CA}$は次の式であった。
 
 $$
- \theta_{CA} = \arctan\dfrac{y_a-y_c}{x_a-x_c}
+\theta\_{CA} = \arctan\dfrac{y_a-y_c}{x_a-x_c}
 $$
 
 ただし、$arctan$ 関数の値域は$-\pi < \theta_{CA} \le \pi $ なので、軸$X$を基準とした**方向角$\theta$は** $ 0 \le \theta < 2\pi $ であるので、$\theta$を得るには $\theta_{CA}$ が負の時だけ$+2\pi$分、この値を補正する必要がある。これは、sign 関数を使って次の通りとなる。
 
 $$
-  \theta = \theta_{CA} + (1 - sign(\theta_{CA}) |sign(\theta_{CA})|\pi
+\theta = \theta_{CA} + (1 - sign(\theta_{CA}) |sign(\theta_{CA})|\pi
 $$
 
 したがって、次の表により、方向角 $\theta$が成り立つことがわかる。
@@ -796,3 +1394,6 @@ $$
 路線は 3 種類の線形要素の組み合わせである。そこで、任意の点$P(x,y)$が、路線中のどの線形要素上に対応するのか、探索する必要がある。素朴な線形探索では、路線の終端に近い領域ほど計時時間を必要とする実装になる。
 
 一つのアイデアとして、各線形の始点と求めたい点$P$との距離を計算しておき、最短距離となる始点を求める。始点は前後二つの線形の端点なので、その二つの線形に限って割り出し計算すると効率が良いはずである。この場合の計算量は $O(n)$である。これより速くするなら**最近傍探索**用のデータ構造を導入する必要がある。
+
+$$
+$$
