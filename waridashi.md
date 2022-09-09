@@ -399,7 +399,7 @@ $$
 
 $$
 \begin{array}{c}
-R^{-1}(\theta+\tau) \begin{pmatrix}
+R^{-1}(\theta+\tau+\pi) \begin{pmatrix}
 x_{KA} - x_{KE} \\
 y_{KA} - y_{KE}
 \end{pmatrix} =
@@ -414,7 +414,7 @@ x_\tau \\
 x_{KA} \\
 y_{KA}
 \end{pmatrix} =
-R(\theta+\tau) \begin{pmatrix}
+R(\theta+\tau +\pi) \begin{pmatrix}
 x_\tau \\
 -y_\tau
 \end{pmatrix} +
@@ -423,8 +423,8 @@ x_{KE} \\
 y_{KE}
 \end{pmatrix} =
 \begin{pmatrix}
-x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
-x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
+x_\tau\cos(\theta+\tau+\pi) + y_\tau \sin(\theta+\tau +\pi) + x_{KE}\\
+x_\tau\sin(\theta+\tau+\pi) - y_\tau \cos(\theta+\tau+\pi) + y_{KE}
 \end{pmatrix}
 \\
 \\
@@ -565,7 +565,7 @@ $$
 
 $$
 \begin{array}{c}
-R^{-1}(\theta-\tau) \begin{pmatrix}
+R^{-1}(\theta-\tau + \pi) \begin{pmatrix}
 x_{KA} - x_{KE} \\
 y_{KA} - y_{KE}
 \end{pmatrix} =
@@ -580,7 +580,7 @@ y_\tau
 x_{KA} \\
 y_{KA}
 \end{pmatrix} =
-R(\theta+\tau) \begin{pmatrix}
+R(\theta-\tau+ \pi) \begin{pmatrix}
 x_\tau \\
 y_\tau
 \end{pmatrix} +
@@ -589,8 +589,8 @@ x_{KE} \\
 y_{KE}
 \end{pmatrix} =
 \begin{pmatrix}
-x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
-x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+x_\tau\cos(\theta-\tau+ \pi) - y_\tau \sin(\theta-\tau+ \pi) + x_{KE}\\
+x_\tau\sin(\theta-\tau+ \pi) + y_\tau \cos(\theta-\tau+ \pi) + y_{KE}
 \end{pmatrix}
 \\
 \\
@@ -725,8 +725,8 @@ x_{KA} \\
 y_{KA}
 \end{pmatrix}  & =
 \begin{pmatrix}
-x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
-x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
+x_\tau\cos(\theta+\tau+ \pi) + y_\tau \sin(\theta+\tau+ \pi) + x_{KE}\\
+x_\tau\sin(\theta+\tau+ \pi) - y_\tau \cos(\theta+\tau+ \pi) + y_{KE}
 \end{pmatrix}
 \\
 \\
@@ -782,8 +782,8 @@ x_{KA} \\
 y_{KA}
 \end{pmatrix} & =
 \begin{pmatrix}
-x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
-x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+x_\tau\cos(\theta-\tau+ \pi) - y_\tau \sin(\theta-\tau+ \pi) + x_{KE}\\
+x_\tau\sin(\theta-\tau+ \pi) + y_\tau \cos(\theta-\tau+ \pi) + y_{KE}
 \end{pmatrix}
 \\
 \\
@@ -856,20 +856,20 @@ x_{KA} \\
 y_{KA}
 \end{pmatrix} & =
 \begin{pmatrix}
-x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
-x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
+x_\tau\cos(\theta-\tau+ \pi) - y_\tau \sin(\theta-\tau+ \pi) + x_{KE}\\
+x_\tau\sin(\theta-\tau+ \pi) + y_\tau \cos(\theta-\tau+ \pi) + y_{KE}
 \end{pmatrix}　\\ & =
 \begin{pmatrix}
-x_\tau\cos(\theta+\dfrac{L}{2R}) \boxed{- y_\tau} \sin(\theta+\dfrac{L}{2R}) + x_{KE}\\ \\
-x_\tau\sin(\theta+\dfrac{L}{2R}) \boxed{+ y_\tau} \cos(\theta+\dfrac{L}{2R}) + y_{KE}
+x_\tau\cos(\theta+\dfrac{L}{2R}+ \pi) \boxed{- y_\tau} \sin(\theta+\dfrac{L}{2R}+ \pi) + x_{KE}\\ \\
+x_\tau\sin(\theta+\dfrac{L}{2R}+ \pi) \boxed{+ y_\tau} \cos(\theta+\dfrac{L}{2R}+ \pi) + y_{KE}
 \end{pmatrix} \quad (R< 0 ) \\ \\
 \begin{pmatrix}
 x_{KA} \\
 y_{KA}
 \end{pmatrix} & =
 \begin{pmatrix}
-x_\tau\cos(\theta+\dfrac{L}{2R}) \boxed{+ y_\tau} \sin(\theta+\dfrac{L}{2R}) + x_{KE}\\ \\
-x_\tau\sin(\theta+\dfrac{L}{2R}) \boxed{- y_\tau} \cos(\theta+\dfrac{L}{2R}) + y_{KE}
+x_\tau\cos(\theta+\dfrac{L}{2R}+ \pi) \boxed{+ y_\tau} \sin(\theta+\dfrac{L}{2R}+ \pi) + x_{KE}\\ \\
+x_\tau\sin(\theta+\dfrac{L}{2R}+ \pi) \boxed{- y_\tau} \cos(\theta+\dfrac{L}{2R}+ \pi) + y_{KE}
 \end{pmatrix} \quad (R > 0 ) \\ \\
 \end{array}
 $$
@@ -886,8 +886,8 @@ x_{KA} \\
 y_{KA}
 \end{pmatrix} & =
 \begin{pmatrix}
-x_\tau\cos(\theta+\tau) \boxed{- y_\tau} \sin(\theta+\tau) + x_{KE}\\ \\
-x_\tau\sin(\theta+\tau) \boxed{+ y_\tau} \cos(\theta+\tau) + y_{KE}
+x_\tau\cos(\theta+\tau+ \pi) \boxed{- y_\tau} \sin(\theta+\tau+ \pi) + x_{KE}\\ \\
+x_\tau\sin(\theta+\tau+ \pi) \boxed{+ y_\tau} \cos(\theta+\tau+ \pi) + y_{KE}
 \end{pmatrix} \quad \\ \\
 & \tau = \dfrac{L}{2R}, \quad
 x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad
@@ -897,6 +897,35 @@ $$
 
 また、$\phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}$ としても、同じとなる。
 
+$KE-KA$ クロソイドは、点$KE$が始点であるから式をまとめると次の通りとなる。
+
+$$
+\begin{array}{cll}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
+\begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} - R^{-1}(\theta+\tau + \pi)R(\theta+\tau + \pi)
+\begin{pmatrix}
+x_\tau \\
+y_\tau
+\end{pmatrix}
+\\\\
+& = R^{-1}(\theta+\tau + \pi)
+\begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} -
+\begin{pmatrix}
+x_\tau \\
+y_\tau
+\end{pmatrix}
+\end{array}
+$$
+
 まとめると、$KE-KA$ クロソイドの場合は、次の通りとなる。
 
 $$
@@ -904,22 +933,14 @@ $$
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix} & =
+\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
 \begin{pmatrix}
-\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
--\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
-\end{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} -
 \begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \\\\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix}  & =
-\begin{pmatrix}
-x_\tau\cos(\theta+\tau) - y_\tau \sin(\theta+\tau) + x_{KE}\\
-x_\tau\sin(\theta+\tau) + y_\tau \cos(\theta+\tau) + y_{KE}
+x_\tau \\
+y_\tau
 \end{pmatrix}
 \\
 \\
@@ -990,7 +1011,8 @@ R^{-1}(-\theta+\tau)\begin{pmatrix}
 x_{KAE} \\
 y_{KAE}
 \end{pmatrix} =
-R(\theta-\tau)\begin{pmatrix} - x_{\tau} \\ - y_{\tau}
+R(\theta-\tau)
+\begin{pmatrix} - x_{\tau} \\ - y_{\tau}
 \end{pmatrix} +
 \begin{pmatrix}
 x_{KAE} \\
@@ -1010,82 +1032,86 @@ R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\ y_{\tau}
 \begin{pmatrix}
 x_{KAE} \\
 y_{KAE}
-\end{pmatrix} \\
+\end{pmatrix}
 $$
 
 となる。どちらも次の値を使う。
 
 $$
-\tau = \dfrac{A^2}{2R_1^2}, x_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, y_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
+\tau = \dfrac{l'}{2|R_1|}, \quad x_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, \quad y_{\tau} = \dfrac{A}{\sqrt2}\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
 $$
 
-まとめると、$KAE-KEE$ 卵形クロソイドは、$R_1 > R_2 > 0$ の時、
+ここで、次の式に置き換えると式を共通化できる。
 
 $$
-\begin{array}{cl}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} & =
-\begin{pmatrix}
-(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
--(x - x_{KA})\sin\theta +(y - y_{KA})\cos\theta
-\end{pmatrix}
-\\\\
-\begin{pmatrix}
-x_{KA}\\
-y_{KA}
-\end{pmatrix} & =
-R(\theta-\tau)\begin{pmatrix} - x_{\tau} \\ - y_{\tau}
-\end{pmatrix} +
-\begin{pmatrix}
-x_{KAE} \\
-y_{KAE}
-\end{pmatrix}
-\end{array}
+\tau = \dfrac{l'}{2R_1}, \quad x_{\tau} = \dfrac{A}{\sqrt2}\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt \tau}d\tau, \quad y_{\tau} = sign(R_1)\dfrac{A}{\sqrt2}\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt \tau}d\tau
 $$
 
-$R_2 < R_1 < 0$ の時、
+さらに$KAE-KEE$ クロソイドは、点$KAE$が始点であるから式をまとめると次の通りとなる。
 
 $$
 \begin{array}{cl}
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix} & =
+\end{pmatrix} & = R^{-1}(\theta)
 \begin{pmatrix}
-(x - x_{KA})\cos\theta +(y - y_{KA})\sin\theta \\
-(x - x_{KA})\sin\theta -(y - y_{KA})\cos\theta
-\end{pmatrix}
+x - x_{KA} \\
+y - y_{KA}
+\end{pmatrix} = R^{-1}(\theta)
+\begin{pmatrix}
+x - x_{KAE} \\
+y - y_{KAE}
+\end{pmatrix} - R^{-1}(\theta)R(\theta-\tau)
+\begin{pmatrix} - x_{\tau} \\ - y_{\tau}\end{pmatrix}
 \\\\
+& = R^{-1}(\theta)
 \begin{pmatrix}
-x_{KA}\\
-y_{KA}
-\end{pmatrix} & =
-R(\theta+\tau)\begin{pmatrix} - x_{\tau} \\ y_{\tau}
-\end{pmatrix} +
-\begin{pmatrix}
-x_{KAE} \\
-y_{KAE}
-\end{pmatrix}
+x - x_{KAE} \\
+y - y_{KAE}
+\end{pmatrix} + R^{-1}(\tau)\begin{pmatrix} x_{\tau} \\ y_{\tau}\end{pmatrix}
 \end{array}
 $$
 
-どちらの場合も次の式を使う。
+まとめると、$KAE-KEE$ 卵形クロソイドの場合次の式が成り立つ
 
 $$
 \begin{array}{cl}
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} & = R^{-1}(\theta)
+\begin{pmatrix}
+x - x_{KAE} \\
+y - y_{KAE}
+\end{pmatrix} + R^{-1}(\tau)\begin{pmatrix} x_{\tau} \\ y_{\tau}\end{pmatrix}
+\\\\
 \begin{pmatrix}
 l \\
 w
-\end{pmatrix} =
+\end{pmatrix} & =
 \begin{pmatrix}
 l' + l_0 + l_1 + \cdots + l_k \\
 w_k
 \end{pmatrix}　(l' \le l < l' + L)
 \\
 \\
-l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l'}{2|R_1|}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+ l' & = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l'}{2R_1}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau \\\\
+ \begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R_1|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -1093,47 +1119,50 @@ $$
 
 $KE-KA$クロソイドの場合を原則そのまま利用できる。
 
-$R_1 > R_2 > 0 $の時、点$KE=KEE$であるから、
-
 $$
+\begin{array}{cll}
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix} =
+\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
 \begin{pmatrix}
--(x - x_{KEE})\cos(\theta+\tau) -(y - y_{KEE})\sin(\theta+\tau) + x_\tau\\
--(x - x_{KEE})\sin(\theta+\tau) +(y - y_{KEE})\cos(\theta+\tau) + y_\tau
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} -
+\begin{pmatrix}
+x_\tau \\
+y_\tau
 \end{pmatrix}
-$$
-
-同様に、$R_2 < R_1 < 0 $の時、点$KE=KEE$であるから、
-
-$$
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} =
-\begin{pmatrix}
--(x - x_{KEE})\cos(\theta-\tau) -(y - y_{KEE})\sin(\theta-\tau) + x_\tau\\
-(x - x_{KEE})\sin(\theta-\tau) -(y - y_{KEE})\cos(\theta-\tau) + y_\tau
-\end{pmatrix}
-$$
-
-どちらの場合も次の式を使う。
-
-$$
-\begin{array}{cl}
+\\
+\\
+& l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l' + L}{2R_2}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = -sign(R_2)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\\
+\\
 \begin{pmatrix}
 l \\
 w
-\end{pmatrix} =
+\end{pmatrix}  & =
 \begin{pmatrix}
 l' + L - (l_0 + l_1 + \cdots + l_k) \\
 w_k
-\end{pmatrix}　(l' \le l < l' + L)
+\end{pmatrix}　 (l' \le l < l' + L)
 \\
 \\
-l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{A^2}{2R_2^2}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{\tau}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\begin{pmatrix}
+l_n \\
+w_n
+\end{pmatrix} & =
+\begin{pmatrix}
+\cos\phi_n & \sin\phi_n \\
+-\sin\phi_n & \cos\phi_n
+\end{pmatrix}
+\begin{pmatrix}
+u - u_n \\
+v - v_n
+\end{pmatrix}
+\\
+\\
+& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
