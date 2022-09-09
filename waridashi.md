@@ -28,8 +28,7 @@ $$
 \begin{pmatrix}
 l \\
 w
-\end{pmatrix} =
-R^{-1}(\tau)
+\end{pmatrix} = R^{-1}(\tau)
 \begin{pmatrix}
 x - x_0\\
 y - y_0
@@ -57,6 +56,26 @@ w
 (x - x_0)\cos\tau+(y - y_0)\sin\tau\\
 -(x - x_0)\sin\tau+(y - y_0)\cos\tau
 \end{pmatrix} \quad (0 \le l \lt L)
+$$
+
+交点 $Q$ は次の通りである。
+
+$$
+\begin{array}{cl}
+\vec{OQ} & = \vec{OA} + \vec{AQ} = \vec{OA} + l\vec{e_L} =
+\begin{pmatrix}
+x_0 \\
+y_0
+\end{pmatrix} +l
+\begin{pmatrix}
+\cos\tau \\
+\sin\tau
+\end{pmatrix} \\ & =
+\begin{pmatrix}
+x_0 + ((x - x_0)\cos\tau+(y - y_0)\sin\tau)\cos\tau \\
+y_0 - ((x - x_0)\cos\tau+(y - y_0)\sin\tau)\sin\tau
+\end{pmatrix}
+\end{array}
 $$
 
 ## 単曲線での割り出し
@@ -107,6 +126,33 @@ R - sign(R)\sqrt{(x-x_c)^2+(y-y_c)^2}
 \\
 \\
 \theta &= \arctan{\dfrac{y-y_c}{x-x_c}} - \arctan{\dfrac{y_a-y_c}{x_a-x_c}} \qquad  (0 \le |\theta| \lt L/|R|)
+\end{array}
+$$
+
+この場合、単曲線$AB$と直線$CP$の交点$Q(x_q,y_q)$の座標は、線分$CA$を点$C$を中心に角度$\theta$回転させた点となる。
+
+$$
+\begin{array}{cl}
+\begin{pmatrix}
+x_q \\
+y_q
+\end{pmatrix} & =　R(\theta) \vec{CA} +
+\begin{pmatrix}
+x_c \\
+y_c
+\end{pmatrix} =　R(\theta)  \begin{pmatrix}
+x_a - x_c \\
+y_a - y_c
+\end{pmatrix} +
+\begin{pmatrix}
+x_c \\
+y_c
+\end{pmatrix} \\\\
+& =
+\begin{pmatrix}
+(x_a - x_c)\cos\theta -  (y_a - y_c)\sin\theta + x_c\\
+(x_a - x_c)\sin\theta +  (y_a - y_c)\cos\theta + y_c
+\end{pmatrix}
 \end{array}
 $$
 
@@ -366,7 +412,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -502,7 +548,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -668,7 +714,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -971,7 +1017,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -1111,7 +1157,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_n & = \dfrac{\sum^k_{n=0}l_n}{2|R_1|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2|R_1|}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -1162,7 +1208,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
