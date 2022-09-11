@@ -283,11 +283,11 @@ v - v_0
 \end{pmatrix}
 $$
 
-次に、この $l_0$ をクロソイド長とする点$Q_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2|R|}$、$u_1 = \clothox{\phi_1}$、$\boxed{v_1 = -\clothoy{\phi_1}}$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
+次に、この $l_0$ をクロソイド長とする点$Q_1(u_1, v_1)$を考える。$\phi_1 = \dfrac{l_0}{2R}$、$u_1 = \clothox{|\phi_1|}$、$\boxed{v_1 = -\clothoy{|\phi_1|}}$ である。この点$K_1$ を原点とする座標系で求める点 $P(l_1, w_1)$は次の通りになる。
 
 $$ \vectwo{l_1}{w_1} =\Rinv{\phi_1}\vectwo{u-u_1}{v-v_1}$$
 
-次に$l_0 + l_1$をクロソイド長とする点$Q_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2|R|}$、$u_2 = \clothox{\phi_2}$、$\boxed{v_2 = -\clothoy{\phi_2}}$ である。
+次に$l_0 + l_1$をクロソイド長とする点$Q_2(u_2, v_2)$を考える。$\phi_2 = \dfrac{l_0+l_1}{2R}$、$u_2 = \clothox{|\phi_2|}$、$\boxed{v_2 = -\clothoy{|\phi_2|}}$ である。
 
 これを続けていくと$\displaystyle\lim_{n\to\infty}l_n = 0$となり、点$Q_n$は求める点$Q$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。ここで、この点$Q$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
 
@@ -317,7 +317,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_k  = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_k = \clothox{\phi_k}, \quad v_k = - \clothoy{\phi_k}
+& \phi_k  = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \clothox{|\phi_k|}, \quad v_k = - \clothoy{|\phi_k|}
 \\
 \\
  \vectwo{x_q}{y_q} & = \R{\theta}\vectwo{u_k}{v_k}+\vectwo{x_{KA}}{y_{KA}}
@@ -364,7 +364,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_k  = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_k = \clothox{\phi_k}, \quad v_k = sign(R)\clothoy{\phi_k}
+& \phi_k  = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \clothox{|\phi_k|}, \quad v_k = sign(R)\clothoy{|\phi_k|}
 \\
 \\
  \vectwo{x_q}{y_q} & = \R{\theta}\vectwo{u_k}{v_k}+\vectwo{x_{KA}}{y_{KA}}
@@ -380,15 +380,7 @@ $$
 u \\
 v
 \end{pmatrix} =
-R^{-1}(\theta+\tau + \pi) \begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} =
-\begin{pmatrix}
-\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
--\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
+R^{-1}(\theta+\tau) \begin{pmatrix}
 x - x_{KA} \\
 y - y_{KA}
 \end{pmatrix}
@@ -398,7 +390,7 @@ $$
 
 $$
 \begin{array}{c}
-R^{-1}(\theta+\tau+\pi) \begin{pmatrix}
+R^{-1}(\theta+\tau) \begin{pmatrix}
 x_{KA} - x_{KE} \\
 y_{KA} - y_{KE}
 \end{pmatrix} =
@@ -408,37 +400,38 @@ x_\tau \\
 \end{pmatrix}
 \\
 \\
-\therefore
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} =
-R(\theta+\tau +\pi) \begin{pmatrix}
-x_\tau \\
--y_\tau
-\end{pmatrix} +
-\begin{pmatrix}
-x_{KE} \\
-y_{KE}
-\end{pmatrix}
+\therefore \vectwo{x_{KA}}{y_{KA}} = R(\theta+\tau)\vectwo{x_\tau}{-y_\tau}+ \vectwo{x_{KE}}{y_{KE}}
 \\
 \\
-\tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\tau = \dfrac{L}{2R}, \quad x_\tau = \clothox{\tau}, \quad y_\tau = \clothoy{\tau}
 \end{array}
 $$
 
-以降はこの小座標系$(u,v)$で議論する。この小座標系は、$KA-KE$クロソイドの$R<0$の形状と一致する。したがって、求める点 $P(l, w)$ に対するクロソイド上の点 $Q$ に至るまで、次の同じ式が成り立つ。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。
+$KE-KA　$ クロソイド は点$KE$が始点であるから、点$KA$の式を代入して点$KE$の式にする。
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+R^{-1}(\theta+\tau) \begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} - \vectwo{x_\tau}{-y_\tau}
+$$
+
+以降はこの小座標系$(u,v)$で議論する。この小座標系は、$KA-KE$クロソイドの$R<0$の形状を原点を中心に 180 度回転させものと一致する。したがって、求める点 $P(l, w)$ に対するクロソイド上の点 $Q$ に至るまで、次の同じ式が成り立つ。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。
 
 $$
 \begin{array}{cl}
 \vectwo{l_n}{w_n} & = \Rinv{\phi_n}\vectwo{u-u_n}{v-v_n}
 \\
 \\
-& \phi_n = \dfrac{\sum^n_{k=0}l_k}{2R}, \quad u_n = \clothox{\phi_n}, \quad v_n = - \clothoy{\phi_n}
+& \phi_n = \dfrac{\sum^n_{k=0}l_k}{2R}, \quad u_n = - \clothox{|\phi_n|}, \quad v_n = \clothoy{|\phi_n|}
 \end{array}
 $$
 
-点$Q_n(u_n,v_n)$は求める点$Q$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$ から累積曲線長$\sum^k_{n=0}l_n$ を引くことになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
+点$Q_n(u_n,v_n)$は求める点$Q$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$に累積曲線長$\sum^k_{n=0}l_n$ を加えることになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
 
 $$
 \begin{array}{cll}
@@ -447,7 +440,7 @@ l \\
 w
 \end{pmatrix}  & =
 \begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
+L ＋ (l_0 + l_1 + \cdots + l_k) \\
 w_k
 \end{pmatrix}　 (0 \le l < L)
 \\
@@ -466,37 +459,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
-\end{array}
-$$
-
-ここで、$(u,v)$は、次の通りである。
-
-$$
-\begin{array}{c}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} =
-\begin{pmatrix}
-\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
--\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \\\\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} =
-\begin{pmatrix}
-x_\tau\cos(\theta+\tau) + y_\tau \sin(\theta+\tau) + x_{KE}\\
-x_\tau\sin(\theta+\tau) - y_\tau \cos(\theta+\tau) + y_{KE}
-\end{pmatrix}
-\\
-\\
-\tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = -\clothox{|\phi_k|}, \quad v_k = \clothoy{|\phi_k|}
 \end{array}
 $$
 
@@ -509,15 +472,7 @@ $$
 u \\
 v
 \end{pmatrix} =
-R^{-1}(\theta-\tau + \pi) \begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} =
-\begin{pmatrix}
-\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
--\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
+R^{-1}(\theta-\tau) \begin{pmatrix}
 x - x_{KA} \\
 y - y_{KA}
 \end{pmatrix}
@@ -527,7 +482,7 @@ $$
 
 $$
 \begin{array}{c}
-R^{-1}(\theta-\tau + \pi) \begin{pmatrix}
+R^{-1}(\theta-\tau) \begin{pmatrix}
 x_{KA} - x_{KE} \\
 y_{KA} - y_{KE}
 \end{pmatrix} =
@@ -542,7 +497,7 @@ y_\tau
 x_{KA} \\
 y_{KA}
 \end{pmatrix} =
-R(\theta-\tau+ \pi) \begin{pmatrix}
+R(\theta-\tau) \begin{pmatrix}
 x_\tau \\
 y_\tau
 \end{pmatrix} +
@@ -556,6 +511,19 @@ y_{KE}
 \end{array}
 $$
 
+$KE-KA　$ クロソイド は点$KE$が始点であるから、点$KA$の式を代入して点$KE$の式にする。
+
+$$
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix} =
+R^{-1}(\theta-\tau) \begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} - \vectwo{x_\tau}{y_\tau}
+$$
+
 以降はこの小座標系$(u,v)$で議論する。この小座標系は、$KA-KE$クロソイドの$R>0$の形状と一致する。したがって、求める点 $P(l, w)$ に対するクロソイド上の点 $Q$ に至るまで、次の同じ式が成り立つ。ここで、$u_0 = v_0 = 0$ であり、接線方向角 $\phi_0 = 0$、クロソイド長 $l_0=0$ である。
 
 $$
@@ -563,11 +531,11 @@ $$
 \vectwo{l_n}{w_n} & = \Rinv{\phi_n}\vectwo{u-u_n}{v-v_n}
 \\
 \\
-& \phi_n = \dfrac{\sum^n_{k=0}l_k}{2|R|}, \quad u_n = \clothox{\phi_n}, \quad v_n =  \clothoy{\phi_n}
+& \phi_n = \dfrac{\sum^n_{k=0}l_k}{2R}, \quad u_n = -\clothox{\phi_n}, \quad v_n = - \clothoy{\phi_n}
 \end{array}
 $$
 
-点$Q_n(u_n,v_n)$は求める点$Q$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$ から累積曲線長$\sum^k_{n=0}l_n$ を引くことになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
+点$Q_n(u_n,v_n)$は求める点$Q$に収束する。計算上、十分 $0$ に近い値となるのが$l_k$である時、求める点 $P(l, w)$が次のように定まる。$l$は、点$KE$からの曲線長なので、曲線長 $L$に累積曲線長$\sum^k_{n=0}l_n$ を加えることになる。ここで、この点$K$がクロソイド曲線上に存在するためには、$0 \le l \lt L$ でなければならない。
 
 $$
 \begin{array}{cll}
@@ -576,7 +544,7 @@ l \\
 w
 \end{pmatrix}  & =
 \begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
+L + (l_0 + l_1 + \cdots + l_k) \\
 w_k
 \end{pmatrix}　 (0 \le l < L)
 \\
@@ -595,37 +563,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
-\end{array}
-$$
-
-ここで、$(u,v)$は、次の通りである。
-
-$$
-\begin{array}{c}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} =
-\begin{pmatrix}
-\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
--\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \\\\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} =
-\begin{pmatrix}
-x_\tau\cos(\theta-\tau) - y_\tau \sin(\theta-\tau) + x_{KE}\\
-x_\tau\sin(\theta-\tau) + y_\tau \cos(\theta-\tau) + y_{KE}
-\end{pmatrix}
-\\
-\\
-\tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = -\clothox{\phi_k}, \quad v_k =  -\clothoy{\phi_k}
 \end{array}
 $$
 
@@ -634,224 +572,41 @@ $$
 以上、$KE-KA$ クロソイドの割り出し計算式は以下の通りまとめることができる。$R>0 $ の時、次の通りである。
 
 $$
-\begin{array}{cll}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} & =
-\begin{pmatrix}
-\cos(\theta+\tau + \pi) & \sin(\theta+\tau + \pi) \\
--\sin(\theta+\tau + \pi) & \cos(\theta+\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \\\\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix}  & =
-\begin{pmatrix}
-x_\tau\cos(\theta+\tau+ \pi) + y_\tau \sin(\theta+\tau+ \pi) + x_{KE}\\
-x_\tau\sin(\theta+\tau+ \pi) - y_\tau \cos(\theta+\tau+ \pi) + y_{KE}
-\end{pmatrix}
-\\
-\\
-& \tau = \dfrac{L}{2R}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
-\\
-\\
-\begin{pmatrix}
-l \\
-w
-\end{pmatrix}  & =
-\begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
-w_k
-\end{pmatrix}　 (0 \le l < L)
-\\
-\\
-\begin{pmatrix}
-l_n \\
-w_n
-\end{pmatrix} & =
-\begin{pmatrix}
-\cos\phi_n & \sin\phi_n \\
--\sin\phi_n & \cos\phi_n
-\end{pmatrix}
-\begin{pmatrix}
-u - u_n \\
-v - v_n
-\end{pmatrix}
-\\
-\\
-& \phi_n = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n = - \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+\begin{array}{cl}
+\vectwo{u}{v} & =
+R^{-1}(\theta+\tau) \begin{pmatrix}
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} - \vectwo{x_\tau}{-y_\tau} \\\\
+& \tau = \dfrac{L}{2R}, \quad x_\tau = \clothox{\tau}, \quad y_\tau = \clothoy{\tau} \\\\
 \end{array}
 $$
 
 $R<0 $ の時、次の通りである。
 
 $$
-\begin{array}{cll}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} & =
-\begin{pmatrix}
-\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
--\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \\\\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} & =
-\begin{pmatrix}
-x_\tau\cos(\theta-\tau+ \pi) - y_\tau \sin(\theta-\tau+ \pi) + x_{KE}\\
-x_\tau\sin(\theta-\tau+ \pi) + y_\tau \cos(\theta-\tau+ \pi) + y_{KE}
-\end{pmatrix}
-\\
-\\
- & \tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
-\\
-\\
-\begin{pmatrix}
-l \\
-w
-\end{pmatrix}  & =
-\begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
-w_k
-\end{pmatrix}　 (0 \le l < L)
-\\
-\\
-\begin{pmatrix}
-l_n \\
-w_n
-\end{pmatrix} & =
-\begin{pmatrix}
-\cos\phi_n & \sin\phi_n \\
--\sin\phi_n & \cos\phi_n
-\end{pmatrix}
-\begin{pmatrix}
-u - u_n \\
-v - v_n
-\end{pmatrix}
-\\
-\\
- & \phi_n  = \dfrac{\sum^k_{n=0}l_n}{2|R|}, \quad u_n = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_n =  \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
-\end{array}
-$$
-
-まず、$(u, v)$への変換について、$R < 0$ の時、$|R|$の絶対値を外すと、$\tau = - \dfrac{L}{2R}$であり、$(u, v)$への変換式は $R>0$の場合と同じである。
-
-$$
-\begin{array}{cll}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} & =
-\begin{pmatrix}
-\cos(\theta-\tau + \pi) & \sin(\theta-\tau + \pi) \\
--\sin(\theta-\tau + \pi) & \cos(\theta-\tau + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix}
-\\
-\\
-& = \begin{pmatrix}
-\cos(\theta+\dfrac{L}{2R} + \pi) & \sin(\theta+\dfrac{L}{2R} + \pi) \\\\
--\sin(\theta+\dfrac{L}{2R} + \pi) & \cos(\theta+\dfrac{L}{2R} + \pi)
-\end{pmatrix}
-\begin{pmatrix}
-x - x_{KA} \\
-y - y_{KA}
-\end{pmatrix} \quad (R < 0)
-\end{array}
-$$
-
-次に、点$KA$について、$R < 0$ の時、$|R|$の絶対値を外すと、同様に、点$KA$の座標は$y_\tau$の符号を除いて等しくなる。
-
-$$
-\begin{array}{cll}
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} & =
-\begin{pmatrix}
-x_\tau\cos(\theta-\tau+ \pi) - y_\tau \sin(\theta-\tau+ \pi) + x_{KE}\\
-x_\tau\sin(\theta-\tau+ \pi) + y_\tau \cos(\theta-\tau+ \pi) + y_{KE}
-\end{pmatrix}　\\ & =
-\begin{pmatrix}
-x_\tau\cos(\theta+\dfrac{L}{2R}+ \pi) \boxed{- y_\tau} \sin(\theta+\dfrac{L}{2R}+ \pi) + x_{KE}\\ \\
-x_\tau\sin(\theta+\dfrac{L}{2R}+ \pi) \boxed{+ y_\tau} \cos(\theta+\dfrac{L}{2R}+ \pi) + y_{KE}
-\end{pmatrix} \quad (R< 0 ) \\ \\
-\begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} & =
-\begin{pmatrix}
-x_\tau\cos(\theta+\dfrac{L}{2R}+ \pi) \boxed{+ y_\tau} \sin(\theta+\dfrac{L}{2R}+ \pi) + x_{KE}\\ \\
-x_\tau\sin(\theta+\dfrac{L}{2R}+ \pi) \boxed{- y_\tau} \cos(\theta+\dfrac{L}{2R}+ \pi) + y_{KE}
-\end{pmatrix} \quad (R > 0 ) \\ \\
-\end{array}
-$$
-
-この違いを吸収するためには、$x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad
-y_\tau = - sign(R)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau$とすればよい。
-
-したがって、点$KA$について次の通りである。
-
-$$
 \begin{array}{cl}
+\vectwo{u}{v} & = R^{-1}(\theta-\tau)
 \begin{pmatrix}
-x_{KA} \\
-y_{KA}
-\end{pmatrix} & =
-\begin{pmatrix}
-x_\tau\cos(\theta+\tau+ \pi) \boxed{- y_\tau} \sin(\theta+\tau+ \pi) + x_{KE}\\ \\
-x_\tau\sin(\theta+\tau+ \pi) \boxed{+ y_\tau} \cos(\theta+\tau+ \pi) + y_{KE}
-\end{pmatrix} \quad \\ \\
-& \tau = \dfrac{L}{2R}, \quad
-x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad
-y_\tau = - sign(R)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+x - x_{KE} \\
+y - y_{KE}
+\end{pmatrix} - \vectwo{x_\tau}{y_\tau} \\\\
+& \tau = \dfrac{L}{2|R|}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{\tau}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
 \end{array}
 $$
 
-また、$\phi_k = \dfrac{\sum^k_{n=0}l_n}{2R}$ としても、同じとなる。
-
-$KE-KA$ クロソイドは、点$KE$が始点であるから式をまとめると次の通りとなる。
+まず、$(u, v)$への変換の逆行列について、$R < 0$ の時、$|R|$の絶対値を外すと、$\tau = - \dfrac{L}{2R}$であり、$(u, v)$への変換式は $R>0$の場合と同じである。
 
 $$
 \begin{array}{cll}
-\begin{pmatrix}
-u \\
-v
-\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
-\begin{pmatrix}
-x - x_{KE} \\
-y - y_{KE}
-\end{pmatrix} - R^{-1}(\theta+\tau + \pi)R(\theta+\tau + \pi)
-\begin{pmatrix}
-x_\tau \\
-y_\tau
-\end{pmatrix}
-\\\\
-& = R^{-1}(\theta+\tau + \pi)
-\begin{pmatrix}
-x - x_{KE} \\
-y - y_{KE}
-\end{pmatrix} -
-\begin{pmatrix}
-x_\tau \\
-y_\tau
-\end{pmatrix}
+\Rinv{(\theta-\tau)} & = \Rinv{(\theta+\frac{L}{2R})} \quad (R < 0)
+\\
+\\
+\Rinv{(\theta+\tau)} & = \Rinv{(\theta+\frac{L}{2R})} \quad (R > 0)
 \end{array}
 $$
+
+次に、$y_\tau$の符号の違いを吸収するためには、$x_\tau = \clothox{|\tau|}, \quad y_\tau = - sign(R)\clothox{|\tau|}$とすればよい。
 
 まとめると、$KE-KA$ クロソイドの場合は、次の通りとなる。
 
@@ -860,7 +615,7 @@ $$
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
+\end{pmatrix} & = R^{-1}(\theta+\tau)
 \begin{pmatrix}
 x - x_{KE} \\
 y - y_{KE}
@@ -879,7 +634,7 @@ l \\
 w
 \end{pmatrix}  & =
 \begin{pmatrix}
-L - (l_0 + l_1 + \cdots + l_k) \\
+L + (l_0 + l_1 + \cdots + l_k) \\
 w_k
 \end{pmatrix}　 (0 \le l < L)
 \\
@@ -898,7 +653,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = - sign(R)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_n|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R}, \quad u_k = -\clothox{|\phi_k|}, \quad v_k = sign(R)\clothoy{|\phi_k|}
 \end{array}
 $$
 
@@ -1023,7 +778,7 @@ w_k
 \end{pmatrix}　(l' \le l < l' + L)
 \\
 \\
- l' & = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l'}{2R_1}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau \\\\
+& l'  = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l'}{2R_1}, \quad x_\tau = \dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad y_\tau = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{|\tau|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau \\\\
  \begin{pmatrix}
 l_n \\
 w_n
@@ -1038,7 +793,7 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-\phi_k & = \dfrac{\sum^k_{n=0}l_n}{2|R_1|}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{\phi_n}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
+& \phi_k  = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\cos(\tau)}{\sqrt{\tau}} d\tau, \quad v_k = sign(R_1)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\sin(\tau)}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
@@ -1051,7 +806,7 @@ $$
 \begin{pmatrix}
 u \\
 v
-\end{pmatrix} & = R^{-1}(\theta+\tau + \pi)
+\end{pmatrix} & = R^{-1}(\theta+\tau)
 \begin{pmatrix}
 x - x_{KE} \\
 y - y_{KE}
@@ -1062,7 +817,7 @@ y_\tau
 \end{pmatrix}
 \\
 \\
-& l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l' + L}{2R_2}, \quad x_\tau = \dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = -sign(R_2)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
+& l' = \dfrac{A^2}{|R_1|}, \quad \tau = \dfrac{l' + L}{2R_2}, \quad x_\tau = - \dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\cos\tau}{\sqrt\tau} d\tau, \quad y_\tau = - sign(R_2)\dfrac{A}{\sqrt2}\displaystyle\int^{|\tau|}_0 \dfrac{\sin\tau}{\sqrt\tau} d\tau
 \\
 \\
 \begin{pmatrix}
@@ -1070,7 +825,7 @@ l \\
 w
 \end{pmatrix}  & =
 \begin{pmatrix}
-l' + L - (l_0 + l_1 + \cdots + l_k) \\
+l' + L + (l_0 + l_1 + \cdots + l_k) \\
 w_k
 \end{pmatrix}　 (l' \le l < l' + L)
 \\
@@ -1089,20 +844,26 @@ v - v_n
 \end{pmatrix}
 \\
 \\
-& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_k = \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad v_k = - sign(R_2)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\sin\tau}{\sqrt{\tau}} d\tau
+& \phi_k = \dfrac{\sum^k_{n=0}l_n}{2R_2}, \quad u_k = - \dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\cos\tau}{\sqrt{\tau}} d\tau, \quad v_k =  sign(R_2)\dfrac{A}{\sqrt2} \displaystyle\int^{|\phi_k|}_0 \dfrac{\sin\tau}{\sqrt{\tau}} d\tau
 \end{array}
 $$
 
 ###　　クロソイド割り出し式一覧表
 
-|       式番号        |                     KA-KE                     |                                        KAE-KEE                                        |                                       KE-KA                                        |                                      KEE-KAE                                       |
-| :-----------------: | :-------------------------------------------: | :-----------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-|   $\vectwo{u}{v}$   | $R^{-1}(\theta)\vectwo{x - x_{KA}}{y-y_{KA}}$ | $R^{-1}(\theta)\vectwo{x - x_{KAE}}{y-y_{KAE}} + R^{-1}(\tau)\vectwo{x_\tau}{y_\tau}$ | $R^{-1}(\theta+\tau + \pi)\vectwo{x - x_{KE}}{y-y_{KE}} - \vectwo{x_\tau}{y_\tau}$ | $R^{-1}(\theta+\tau + \pi)\vectwo{x - x_{KE}}{y-y_{KE}} - \vectwo{x_\tau}{y_\tau}$ |
-|        $l'$         |                       0                       |                                $\dfrac{A^2}{\|R_1\|}$                                 |                                         0                                          |                            $\dfrac{A^2}{ \| R_1 \| } $                             |
-|       $\tau$        |                       0                       |                                  $\dfrac{l'}{2R_1}$                                   |                                  $\dfrac{L}{2R} $                                  |                               $\dfrac{l' + L}{2R_2}$                               |
-|      $x_\tau$       |                       0                       |                                 $\clothox{\|\tau\|}$                                  |                                $\clothox{\|\tau\|}$                                |                                $\clothox{\|\tau\|}$                                |
-|      $y_\tau$       |                       0                       |                             $sign(R_1)\clothoy{\|\tau\|}$                             |                            $-sign(R)\clothoy{\|\tau\|}$                            |                           $-sign(R_2)\clothoy{\|\tau\|}$                           |
-| $\vectwo{l_n}{w_n}$ |                       >                       |                                           >                                           |                                         >                                          |                                  $\Rinv{\phi_n}$                                   |
+|       式番号        |                     KA-KE                     |                                            KAE-KEE                                            |                                    KE-KA                                     |                                   KEE-KAE                                    |
+| :-----------------: | :-------------------------------------------: | :-------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------: | :--------------------------------------------------------------------------: |
+|   $\vectwo{u}{v}$   | $R^{-1}(\theta)\vectwo{x - x_{KA}}{y-y_{KA}}$ |     $R^{-1}(\theta)\vectwo{x - x_{KAE}}{y-y_{KAE}} + R^{-1}(\tau)\vectwo{x_\tau}{y_\tau}$     | $R^{-1}(\theta+\tau)\vectwo{x - x_{KE}}{y-y_{KE}} - \vectwo{x_\tau}{y_\tau}$ | $R^{-1}(\theta+\tau)\vectwo{x - x_{KE}}{y-y_{KE}} - \vectwo{x_\tau}{y_\tau}$ |
+|        $l'$         |                       0                       |                                    $\dfrac{A^2}{\|R_1\|}$                                     |                                      0                                       |                         $\dfrac{A^2}{ \| R_1 \| } $                          |
+|       $\tau$        |                       0                       |                                      $\dfrac{l'}{2R_1}$                                       |                               $\dfrac{L}{2R} $                               |                            $\dfrac{l' + L}{2R_2}$                            |
+|      $x_\tau$       |                       0                       |                                     $\clothox{\|\tau\|}$                                      |                             $\clothox{\|\tau\|}$                             |                             $\clothox{\|\tau\|}$                             |
+|      $y_\tau$       |                       0                       |                                 $sign(R_1)\clothoy{\|\tau\|}$                                 |                         $-sign(R)\clothoy{\|\tau\|}$                         |                        $-sign(R_2)\clothoy{\|\tau\|}$                        |
+| $\vectwo{l_n}{w_n}$ |                       >                       |                                               >                                               |                                      >                                       |                       $\Rinv{\phi_n}\vectwo{u_n}{v_n}$                       |
+|      $\phi_n$       |         $\dfrac{\sum^n_{k=0}l_k}{2R}$         |                                $\dfrac{\sum^n_{k=0}l_k}{2R_2}$                                |                       $\dfrac{\sum^n\_{k=0}l_k}{2R} $                        |                       $\dfrac{\sum^n_{k=0}l_k}{2R_2}$                        |
+|        $u_k$        |            $\clothox{\|\phi_k\|}$             |                                    $\clothox{\|\phi_k\|}$                                     |                           $-\clothox{\|\phi_k\|}$                            |                           $-\clothox{\|\phi_k\|}$                            |
+|        $v_k$        |         $sign(R)\clothoy{\|\phi_k\|}$         |                                $sign(R_1)\clothoy{\|\phi_k\|}$                                |                        $-sign(R)\clothoy{\|\phi_k\|}$                        |                       $-sign(R_2)\clothoy{\|\phi_k\|}$                       |
+|         $l$         |               $\sum^k_{n=0}l_n$               |                                    $l' + \sum^k_{n=0}l_n$                                     |                             $L+\sum^k_{n=0}l_n$                              |                            $l'+L+\sum^k_{n=0}l_n$                            |
+|         $w$         |                       >                       |                                               >                                               |                                      >                                       |                                    $w_k$                                     |
+| $\vectwo{x_q}{y_q}$ |                       >                       | $R(\theta)\vectwo{u_k}{v_k}+R(\theta-\tau)\vectwo{x_\tau}{y_\tau}+ \vectwo{x_{KAE}}{y_{KAE}}$ |                                      >                                       |  $R(\theta+\tau)\vectwo{u_k+x_\tau}{v_k+y_\tau}+ \vectwo{x_{KEE}}{y_{KEE}}$  |
 
 ## 補足
 
