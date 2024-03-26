@@ -1,4 +1,8 @@
 ---
+ebook:
+    authors: '秦野克彦'
+    title: '割り出し計算'
+
 puppeteer:
     displayHeaderFooter: true
     headerTemplate: '<div style="font-size: 9px; margin-left: 1cm;"><span class=''title''></span>, <span class=''date''></span></div>'
@@ -11,6 +15,39 @@ puppeteer:
     break-after: page;
   }
 </style>
+
+<div class="TOC">
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [割り出し](#割り出し)
+  - [線分での割り出し](#線分での割り出し)
+  - [単曲線での割り出し](#単曲線での割り出し)
+  - [クロソイド曲線での割り出し](#クロソイド曲線での割り出し)
+    - [$KA-KE$クロソイド$(R > 0)$](#ka-keクロソイドr--0)
+    - [$KA-KE$クロソイド$(R < 0)$](#ka-keクロソイドr--0-1)
+    - [$KA-KE$クロソイド](#ka-keクロソイド)
+    - [$KE-KA$クロソイド$（R>0）$](#ke-kaクロソイドr0)
+    - [$KE-KA$クロソイド$（R<0）$](#ke-kaクロソイドr0-1)
+    - [$ KE-KA $クロソイド](#-ke-ka-クロソイド)
+    - [卵形クロソイド$(KAE-KEE)$](#卵形クロソイドkae-kee)
+    - [卵形クロソイド$(KEE-KAE)$](#卵形クロソイドkee-kae)
+  - [補足](#補足)
+    - [回転行列; 線形代数](#回転行列-線形代数)
+    - [座標系の変換; 線形代数](#座標系の変換-線形代数)
+    - [射影ベクトル; 数 II](#射影ベクトル-数-ii)
+    - [余弦定理](#余弦定理)
+    - [$sign$関数](#sign関数)
+    - [方向角$\theta$](#方向角theta)
+- [路線における割り出し計算](#路線における割り出し計算)
+  - [複数の線形に一致する割り出し](#複数の線形に一致する割り出し)
+
+<!-- /code_chunk_output -->
+</div>
+
+<div style="page-break-before:always"></div>
 
 $$
 \gdef\vectwo#1#2{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
@@ -858,7 +895,7 @@ $$
 |      $x_\tau$       |                       0                       |                                     $\clothox{\|\tau\|}$                                      |                             $\clothox{\|\tau\|}$                             |                             $\clothox{\|\tau\|}$                             |
 |      $y_\tau$       |                       0                       |                                 $sign(R_1)\clothoy{\|\tau\|}$                                 |                         $-sign(R)\clothoy{\|\tau\|}$                         |                        $-sign(R_2)\clothoy{\|\tau\|}$                        |
 | $\vectwo{l_n}{w_n}$ |                       >                       |                                               >                                               |                                      >                                       |                       $\Rinv{\phi_n}\vectwo{u_n}{v_n}$                       |
-|      $\phi_n$       |         $\dfrac{\sum^n_{k=0}l_k}{2R}$         |                                $\dfrac{\sum^n_{k=0}l_k}{2R_2}$                                |                       $\dfrac{\sum^n\_{k=0}l_k}{2R} $                        |                       $\dfrac{\sum^n_{k=0}l_k}{2R_2}$                        |
+|      $\phi_n$       |                       >                       |                                               >                                               |                                      >                                       |                       $\dfrac{\sum^n_{k=0}l_k}{2R_2}$                        |
 |        $u_k$        |            $\clothox{\|\phi_k\|}$             |                                    $\clothox{\|\phi_k\|}$                                     |                           $-\clothox{\|\phi_k\|}$                            |                           $-\clothox{\|\phi_k\|}$                            |
 |        $v_k$        |         $sign(R)\clothoy{\|\phi_k\|}$         |                                $sign(R_1)\clothoy{\|\phi_k\|}$                                |                        $-sign(R)\clothoy{\|\phi_k\|}$                        |                       $-sign(R_2)\clothoy{\|\phi_k\|}$                       |
 |         $l$         |               $\sum^k_{n=0}l_n$               |                                    $l' + \sum^k_{n=0}l_n$                                     |                             $L+\sum^k_{n=0}l_n$                              |                            $l'+L+\sum^k_{n=0}l_n$                            |
